@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, Query } from '@nestjs/common';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { ContactService } from './contact.service';
 import { CreateContactDto } from './dto/create-contact.dto';
@@ -17,8 +17,11 @@ export class ContactController {
 
   @UseGuards(AuthGuard)
   @Get()
-  findAll(@Req() req) {
-    return this.contactService.findAll(req.user.id);
+  findAll(@Req() req, @Query() query) {
+    if (query.skip === undefined) query.skip = 0;
+    if (query.take === undefined) query.skip = 25;
+
+    return this.contactService.findAll(req.user.id, query.skip, query.take);
   }
 
   @Get(':id')
