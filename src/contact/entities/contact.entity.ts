@@ -26,6 +26,9 @@ export class Contact {
     @Column()
     owner: number;
 
+    @CreateDateColumn()
+    createDate: Date;
+
     @UpdateDateColumn()
     updateDate: Date;
 }
