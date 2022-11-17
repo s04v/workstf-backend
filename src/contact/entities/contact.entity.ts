@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class Contact {
@@ -26,27 +26,6 @@ export class Contact {
     @Column()
     owner: number;
 
-    @CreateDateColumn()
-    createdDate: Date;
-
-    // @Column()
-    // amount: number;
-
-    // @Column()
-    // owner: number;  
-
-    // @Column()
-    // createdDate: Date;
-
-    // @Column()
-    // closeDate: Date;
-
-    // @Column()
-    // region: string;
-
-    // @Column()
-    // stage: string;
-
-    // @Column()
-    // probability: number;
+    @UpdateDateColumn()
+    updateDate: Date;
 }
