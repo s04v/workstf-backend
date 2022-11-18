@@ -9,7 +9,7 @@ import { ContactModule } from './contact/contact.module';
   imports: [
     ConfigModule.forRoot({ envFilePath: '.env' }),
     TypeOrmModule.forRoot({
-    type: 'postgres',
+    type: 'mongodb',
     url: process.env.DB_URL,
     // host: process.env.DB_HOST,
     // port: +process.env.DB_PORT,
