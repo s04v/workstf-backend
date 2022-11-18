@@ -10,14 +10,17 @@ export class AuthGuard implements CanActivate {
         const req = context.switchToHttp().getRequest();
         try {
             const authHeader = req.headers.authorization;
-            const bearer = authHeader.split(' ')[0];
-            const token = authHeader.split(' ')[1];
-            if(bearer !== 'Bearer' || !token) 
-                throw new UnauthorizedException({message: "Access is denied due to invalid credentials error"}) 
-            
-            const user = this.jwtService.verify(token);
-            req.user = user;
-            return true;
+            if(authHeader) {
+                const bearer = authHeader.split(' ')[0];
+                const token = authHeader.split(' ')[1];
+                if(bearer !== 'Bearer' || !token) 
+                    throw new UnauthorizedException({message: "Access is denied due to invalid credentials error"}) 
+                
+                const user = this.jwtService.verify(token);
+                req.user = user;
+                return true;
+            }
+            throw new UnauthorizedException({message: "Access is denied due to invalid credentials error"}) 
         } catch(e) {
             console.log(e);
             throw new UnauthorizedException({message: "Access is denied due to invalid credentials error"})

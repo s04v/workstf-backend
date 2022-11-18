@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ObjectIdColumn } from "typeorm";
 
 @Entity()
 export class Contact {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @ObjectIdColumn()
+    _id: string;
     
     @Column()
     firstName: string;
@@ -24,7 +24,7 @@ export class Contact {
     country: string;
 
     @Column()
-    owner: number;
+    owner: string;
 
     @CreateDateColumn()
     createDate: Date;

@@ -20,5 +20,5 @@ export class CreateContactDto {
     @IsNotEmpty()
     country: string;
 
-    owner: number;
+    owner: string;
 }
