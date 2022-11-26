@@ -1,34 +1,41 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ObjectIdColumn } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ObjectIdColumn,
+} from 'typeorm';
 
 @Entity()
 export class Contact {
-    @ObjectIdColumn()
-    _id: string;
-    
-    @Column()
-    firstName: string;
+  @ObjectIdColumn()
+  _id: string;
 
-    @Column()
-    lastName: string;
+  @Column()
+  firstName: string;
 
-    @Column()
-    email: string;
+  @Column()
+  lastName: string;
 
-    @Column()
-    phoneNumber: string;
+  @Column()
+  email: string;
 
-    @Column()
-    company: string;
+  @Column()
+  phoneNumber: string;
 
-    @Column()
-    country: string;
+  @Column()
+  company: string;
 
-    @Column()
-    owner: string;
+  @Column()
+  country: string;
 
-    @CreateDateColumn()
-    createDate: Date;
+  @Column()
+  owner: string;
 
-    @UpdateDateColumn()
-    updateDate: Date;
+  @CreateDateColumn()
+  createDate: Date;
+
+  @UpdateDateColumn()
+  updateDate: Date;
 }

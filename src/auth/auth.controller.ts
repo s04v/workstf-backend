@@ -7,16 +7,15 @@ import { ok } from 'assert';
 
 @Controller('auth')
 export class AuthController {
+  constructor(private authService: AuthService) {}
 
-    constructor(private authService: AuthService) {}
-    
-    @Post('/signin')
-    signin(@Body() userDto: SigninUserDto ) {
-        return this.authService.signin(userDto);
-    }
+  @Post('/signin')
+  signin(@Body() userDto: SigninUserDto) {
+    return this.authService.signin(userDto);
+  }
 
-    @Post('/signup')
-    signup(@Body() userDto: SignupUserDto) {
-        return this.authService.signup(userDto);
-    }
+  @Post('/signup')
+  signup(@Body() userDto: SignupUserDto) {
+    return this.authService.signup(userDto);
+  }
 }

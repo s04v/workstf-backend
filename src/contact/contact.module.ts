@@ -6,11 +6,8 @@ import { Contact } from './entities/contact.entity';
 import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Contact]),
-    AuthModule
-  ],
+  imports: [TypeOrmModule.forFeature([Contact]), AuthModule],
   controllers: [ContactController],
-  providers: [ContactService]
+  providers: [ContactService],
 })
 export class ContactModule {}

@@ -8,16 +8,13 @@ dotenv.config();
 
 @Module({
   imports: [
-    forwardRef(() => UserModule), 
+    forwardRef(() => UserModule),
     JwtModule.register({
       secret: process.env.JWT_SECRET_KEY,
-    })
-  ],  
+    }),
+  ],
   controllers: [AuthController],
   providers: [AuthService],
-  exports: [
-    AuthService,
-    JwtModule
-  ]
+  exports: [AuthService, JwtModule],
 })
 export class AuthModule {}

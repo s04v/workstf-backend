@@ -18,10 +18,14 @@ export class ContactService {
   }
 
   async findAll(id: string, skip: number, take: number) {
-    const data = await this.contactRepository.find({where: { owner: id}, skip: +skip, take: +take});
-    const count = await this.contactRepository.count({where: { owner: id}});
+    const data = await this.contactRepository.find({
+      where: { owner: id },
+      skip: +skip,
+      take: +take,
+    });
+    const count = await this.contactRepository.count({ where: { owner: id } });
 
-    return  {totalCount: count, contacts: data};
+    return { totalCount: count, contacts: data };
   }
 
   findOne(id: string) {
@@ -30,9 +34,12 @@ export class ContactService {
 
   async update(id: string, updateContactDto: UpdateContactDto) {
     const _id = new ObjectId(id);
-    const contactToUpdate = await this.contactRepository.findOneAndUpdate({_id}, { $set: { ...updateContactDto, updateDate: new Date().toISOString() } });
+    const contactToUpdate = await this.contactRepository.findOneAndUpdate(
+      { _id },
+      { $set: { ...updateContactDto, updateDate: new Date().toISOString() } },
+    );
     if (!contactToUpdate)
-      throw new BadRequestException({message: 'Contact not found'});
+      throw new BadRequestException({ message: 'Contact not found' });
     return contactToUpdate;
   }
 
