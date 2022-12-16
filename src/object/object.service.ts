@@ -25,6 +25,7 @@ export class ObjectService {
     const data = await this.objectRepository.find({
       where: { owner, app },
     });
+
     return data;
   }
 

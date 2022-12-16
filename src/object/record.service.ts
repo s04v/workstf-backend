@@ -23,6 +23,7 @@ export class RecordService {
       skip: +skip,
       take: +take,
     });
+    
     const total = await this.recordRepository.countBy({ objectId });
     return { data, total };
   }

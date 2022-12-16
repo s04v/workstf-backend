@@ -24,7 +24,7 @@ export class AuthService {
     if (candidate)
       throw new HttpException('Email already exists', HttpStatus.BAD_REQUEST);
 
-    const hash = await bcrypt.hash(userDto.password, 5);
+    const hash = await bcrypt.hash(userDto.password, process.env.SALT);
     const user = await this.userService.create({ ...userDto, password: hash });
 
     return this.generateToken(user);
