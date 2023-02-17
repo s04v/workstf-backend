@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ContactModule } from './contact/contact.module';
 import { ObjectModule } from './object/object.module';
+import { CustomAppModule } from './custom-app/custom-app.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { ObjectModule } from './object/object.module';
     AuthModule,
     ContactModule,
     ObjectModule,
+    CustomAppModule,
   ],
   controllers: [],
   providers: [],

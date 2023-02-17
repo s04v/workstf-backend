@@ -23,9 +23,18 @@ export class RecordService {
       skip: +skip,
       take: +take,
     });
-    
+
     const total = await this.recordRepository.countBy({ objectId });
     return { data, total };
+  }
+
+  async find(recordId: string) {
+    const _id = new ObjectId(recordId);
+    const data = await this.recordRepository.findOneBy({
+      where: { _id },
+    });
+
+    return data;
   }
 
   async create(objectId: string, createRecordDto: CreateRecordDto) {

@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ObjectId } from 'mongodb';
-import { MongoRepository } from 'typeorm';
+import { In, MongoRepository } from 'typeorm';
 import { CreateObjectDto } from './dto/create-object.dto';
 import { UpdateObjectDto } from './dto/update-object.dto';
 import { CustomObject } from './entities/object.entity';
@@ -21,7 +21,14 @@ export class ObjectService {
     return await this.objectRepository.find({ where: { owner } });
   }
 
+  async findAllByIds(ids: any[]) {
+    return await this.objectRepository.findBy({
+      _id: { $in: ids },
+    });
+  }
+
   async findAllByAppName(owner: string, app: string) {
+    console.log(app);
     const data = await this.objectRepository.find({
       where: { owner, app },
     });
@@ -40,6 +47,7 @@ export class ObjectService {
 
   async update(owner: string, id: string, updateObjectDto: UpdateObjectDto) {
     const _id = new ObjectId(id);
+    console.log(updateObjectDto);
     const objectToUpdate = await this.objectRepository.findOneAndUpdate(
       { _id: _id },
       { $set: { ...updateObjectDto, updateDate: new Date().toISOString() } },

@@ -21,7 +21,9 @@ import { ObjectId } from 'mongodb';
 import { RecordService } from './record.service';
 import { CreateRecordDto } from './dto/create-record.dto';
 import { UpdateRecordDto } from './dto/update-record.dto';
+import { ApiTags } from '@nestjs/swagger/dist/decorators/api-use-tags.decorator';
 
+@ApiTags('object')
 @Controller('object')
 export class ObjectController {
   constructor(
@@ -49,15 +51,15 @@ export class ObjectController {
     return this.objectService.findAllByAppName(req.user.id, appName);
   }
 
-  // @UseGuards(AuthGuard)
-  // @Patch(':appName/:id')
-  // update(
-  //   @Req() req,
-  //   @Param('id') id: string,
-  //   @Body() updateObjectDto: UpdateObjectDto,
-  // ) {
-  //   return this.objectService.update(req.user.id, id, updateObjectDto);
-  // }
+  @UseGuards(AuthGuard)
+  @Patch(':id')
+  update(
+    @Req() req,
+    @Param('id') id: string,
+    @Body() updateObjectDto: UpdateObjectDto,
+  ) {
+    return this.objectService.update(req.user.id, id, updateObjectDto);
+  }
 
   @UseGuards(AuthGuard)
   @Delete(':appName/:id')
@@ -99,6 +101,12 @@ export class ObjectController {
     @Body() createRecordDto: CreateRecordDto,
   ) {
     return this.recordService.create(objectId, createRecordDto);
+  }
+
+  @UseGuards(AuthGuard)
+  @Get(':objectId/record/:recordId')
+  findRecord(@Param('recordId') recordId: string) {
+    return this.recordService.find(recordId);
   }
 
   @UseGuards(AuthGuard)

@@ -1,39 +1,31 @@
+import { ObjectId } from 'mongodb';
 import {
-  Entity,
   Column,
   CreateDateColumn,
-  UpdateDateColumn,
+  Entity,
   ObjectIdColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
-export class CustomObject {
+export class CustomApp {
   @ObjectIdColumn()
   _id: string;
 
   @Column()
-  singularName: string;
+  name: string;
 
   @Column()
-  pluralName: string;
-
-  @Column()
-  app: string;
-
-  @Column()
-  primaryName: string;
-
-  @Column()
-  primaryType: string;
-
-  @Column()
-  schema: object[];
+  iconType: number;
 
   @Column()
   owner: string;
 
   @Column()
   isDefault: boolean;
+
+  @Column()
+  associations: any[];
 
   @CreateDateColumn()
   createDate: Date;

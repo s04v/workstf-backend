@@ -12,5 +12,6 @@ import { RecordService } from './record.service';
   imports: [TypeOrmModule.forFeature([CustomObject, Record]), AuthModule],
   controllers: [ObjectController],
   providers: [ObjectService, FieldService, RecordService],
+  exports: [ObjectService],
 })
 export class ObjectModule {}
