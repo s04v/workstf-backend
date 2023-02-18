@@ -29,5 +29,8 @@ export class CreateObjectDto {
   isDefault: boolean;
 
   @ApiProperty()
+  associate?: string;
+
+  @ApiProperty()
   schema: object[];
 }

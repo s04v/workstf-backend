@@ -35,6 +35,9 @@ export class CustomObject {
   @Column()
   isDefault: boolean;
 
+  @Column()
+  associate: string;
+
   @CreateDateColumn()
   createDate: Date;
 

@@ -41,11 +41,18 @@ export class UserService {
       singularName: 'Contact',
       pluralName: 'Contacts',
       app: crm._id.toString(),
-      primaryName: 'Name',
+      primaryName: 'First Name',
       primaryType: 'text',
       owner: user._id.toString(),
       isDefault: true,
-      schema: [],
+      schema: [
+        {
+          name: "Last Name",
+          type: "text",
+          labels: [],
+          typeName: "Text"
+        }
+      ],
     };
 
     const accountsObject = {

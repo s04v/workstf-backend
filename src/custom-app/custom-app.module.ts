@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { CustomAppService } from './custom-app.service';
 import { CustomAppController } from './custom-app.controller';
 import { AuthModule } from 'src/auth/auth.module';
@@ -10,9 +10,13 @@ import { ObjectService } from 'src/object/object.service';
 // import { AppAssociationService } from './app-association.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CustomApp]), AuthModule, ObjectModule],
+  imports: [
+    TypeOrmModule.forFeature([CustomApp]),
+    forwardRef(() => ObjectModule),
+    AuthModule,
+],
   controllers: [CustomAppController],
   providers: [CustomAppService],
-  exports: [CustomAppService]
+  exports: [CustomAppService],
 })
 export class CustomAppModule {}

@@ -23,6 +23,19 @@ export class CustomAppService {
     return await this.customAppRepository.save(createCustomAppDto);
   }
 
+  async findAssociations(objectId: string) {
+    const objId = new ObjectId(objectId);
+
+    const result = await this.customAppRepository.find({
+      where: { associations: { $elemMatch: { $in: [objId] } } },
+    });
+
+    const associations = result.map((item) => {
+      return { name: item.name, _id: item._id };
+    });
+    return associations;
+  }
+
   async findAll(owner: string) {
     return await this.customAppRepository.find({ where: { owner } });
   }

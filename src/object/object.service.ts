@@ -1,6 +1,7 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Inject, forwardRef } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ObjectId } from 'mongodb';
+import { CustomAppService } from 'src/custom-app/custom-app.service';
 import { In, MongoRepository } from 'typeorm';
 import { CreateObjectDto } from './dto/create-object.dto';
 import { UpdateObjectDto } from './dto/update-object.dto';
@@ -11,10 +12,19 @@ export class ObjectService {
   constructor(
     @InjectRepository(CustomObject)
     private objectRepository: MongoRepository<CustomObject>,
-  ) {}
+
+    @Inject(forwardRef(() => CustomAppService))
+    private customAppService: CustomAppService,
+     ) {}
 
   async create(createObjectDto: CreateObjectDto) {
-    return await this.objectRepository.save(createObjectDto);
+    const obj = await this.objectRepository.save(createObjectDto);
+    this.customAppService.createAssociation(
+      new ObjectId(createObjectDto.associate),
+      obj._id,
+    );
+
+    return obj;
   }
 
   async findAll(owner: string) {

@@ -1,5 +1,5 @@
 import { ConfigModule } from '@nestjs/config';
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
@@ -20,9 +20,10 @@ import { CustomAppModule } from './custom-app/custom-app.module';
       // database: process.env.DB_NAME,
       entities: ['dist/**/*.entity.js'],
       synchronize: true,
+      autoLoadEntities: true,
     }),
-    UserModule,
-    AuthModule,
+    forwardRef(() => UserModule),
+    forwardRef(() => AuthModule),
     ContactModule,
     ObjectModule,
     CustomAppModule,

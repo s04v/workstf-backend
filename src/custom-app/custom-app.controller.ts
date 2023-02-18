@@ -21,9 +21,7 @@ import { UpdateCustomAppDto } from './dto/update-custom-app.dto';
 @ApiTags('custom-app')
 @Controller('custom-app')
 export class CustomAppController {
-  constructor(
-    private readonly customAppService: CustomAppService,
-  ) {}
+  constructor(private readonly customAppService: CustomAppService) {}
 
   @UseGuards(AuthGuard)
   @Post()
@@ -35,7 +33,6 @@ export class CustomAppController {
     return this.customAppService.create(createCustomAppDto);
   }
 
-  
   @UseGuards(AuthGuard)
   @Get()
   findAll(@Req() req) {
@@ -61,6 +58,12 @@ export class CustomAppController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.customAppService.remove(id);
+  }
+
+  @UseGuards(AuthGuard)
+  @Get('association/:id')
+  findAssociations(@Param('id') id: string) {
+    return this.customAppService.findAssociations(id);
   }
 
   @UseGuards(AuthGuard)
