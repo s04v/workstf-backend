@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable, Inject, forwardRef } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  Inject,
+  forwardRef,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ObjectId } from 'mongodb';
 import { CustomAppService } from 'src/custom-app/custom-app.service';
@@ -15,7 +20,7 @@ export class ObjectService {
 
     @Inject(forwardRef(() => CustomAppService))
     private customAppService: CustomAppService,
-     ) {}
+  ) {}
 
   async create(createObjectDto: CreateObjectDto) {
     const obj = await this.objectRepository.save(createObjectDto);

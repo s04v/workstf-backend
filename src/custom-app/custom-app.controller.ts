@@ -100,5 +100,4 @@ export class CustomAppController {
 
     return this.customAppService.removeAssociation(appId, objectId);
   }
-
 }

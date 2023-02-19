@@ -47,11 +47,11 @@ export class UserService {
       isDefault: true,
       schema: [
         {
-          name: "Last Name",
-          type: "text",
+          name: 'Last Name',
+          type: 'text',
           labels: [],
-          typeName: "Text"
-        }
+          typeName: 'Text',
+        },
       ],
     };
 
@@ -59,7 +59,7 @@ export class UserService {
       singularName: 'Account',
       pluralName: 'Accounts',
       app: crm._id.toString(),
-      primaryName: 'Name',
+      primaryName: 'Account Name',
       primaryType: 'text',
       owner: user._id.toString(),
       isDefault: true,
@@ -70,7 +70,7 @@ export class UserService {
       singularName: 'Opportunity',
       pluralName: 'Opportunities',
       app: sales._id.toString(),
-      primaryName: 'Name',
+      primaryName: 'Opportunity Name',
       primaryType: 'text',
       owner: user._id.toString(),
       isDefault: true,
@@ -93,7 +93,6 @@ export class UserService {
       new ObjectId(sales._id),
       opportunities._id,
     );
-
 
     return user;
   }

@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { ObjectService } from "src/object/object.service";
-import { MongoRepository } from "typeorm";
-import { CustomApp } from "./entities/custom-app.entity";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ObjectService } from 'src/object/object.service';
+import { MongoRepository } from 'typeorm';
+import { CustomApp } from './entities/custom-app.entity';
 
 @Injectable()
 export class DefaultAppService {
@@ -27,6 +27,4 @@ export class DefaultAppService {
   async updateSales() {
     // TODO:
   }
-
-
 }

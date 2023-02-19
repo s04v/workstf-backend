@@ -14,7 +14,7 @@ import { ObjectService } from 'src/object/object.service';
     TypeOrmModule.forFeature([CustomApp]),
     forwardRef(() => ObjectModule),
     AuthModule,
-],
+  ],
   controllers: [CustomAppController],
   providers: [CustomAppService],
   exports: [CustomAppService],
