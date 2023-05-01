@@ -4,6 +4,7 @@ This is a backend system for a CRM system. The system provides a set of APIs to 
 # Tools
 * Node.js
 * Nest.js
+* MongoDB
 
 ## Installation
 
